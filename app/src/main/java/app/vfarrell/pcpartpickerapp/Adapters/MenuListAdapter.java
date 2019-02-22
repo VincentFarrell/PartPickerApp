@@ -66,7 +66,7 @@ public class MenuListAdapter extends BaseAdapter {
         }
 
         viewHolder.menuText.setText(components[position]);
-        viewHolder.menuText2.setText("Click to see all "+components[position]);
+        viewHolder.menuText2.setText("Tap to see all "+components[position]);
         viewHolder.icon.setImageResource(images[position]);
 
         return convertView;

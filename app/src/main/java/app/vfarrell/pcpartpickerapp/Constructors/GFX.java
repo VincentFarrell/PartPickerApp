@@ -1,8 +1,5 @@
 package app.vfarrell.pcpartpickerapp.Constructors;
 
-/**
- * Created by Vinny on 12/02/2019.
- */
 
 public class GFX {
 

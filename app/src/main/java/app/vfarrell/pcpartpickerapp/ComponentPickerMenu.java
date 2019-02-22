@@ -1,5 +1,6 @@
 package app.vfarrell.pcpartpickerapp;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,9 +14,9 @@ import app.vfarrell.pcpartpickerapp.Adapters.MenuListAdapter;
 
 public class ComponentPickerMenu extends AppCompatActivity {
 
-    int[] images = {R.drawable.navcpu, R.drawable.navmotherboard, R.drawable.navmemory, R.drawable.navvideocard, R.drawable.navssd, R.drawable.navpowersupply, R.drawable.navcase};
+    int[] images = {R.drawable.navcpu, R.drawable.navmotherboard, R.drawable.navmemory, R.drawable.navvideocard, R.drawable.navhdd, R.drawable.navssd, R.drawable.navpowersupply, R.drawable.navcase};
 
-    String[] components = {"CPUs", "Motherboards", "Memory", "Graphics Cards", "SSDs", "PSUs", "Cases"};
+    String[] components = {"CPUs", "Motherboards", "Memory", "Graphics Cards", "HHDs", "SSDs", "PSUs", "Cases"};
 
     ListView listView;
 
@@ -38,6 +39,7 @@ public class ComponentPickerMenu extends AppCompatActivity {
 
                 Toast.makeText(ComponentPickerMenu.this, components[i], Toast.LENGTH_SHORT).show();
 
+                startActivity(new Intent(ComponentPickerMenu.this, RecyclerViewList2.class));
             }
         });
 
