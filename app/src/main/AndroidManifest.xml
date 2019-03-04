@@ -13,11 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".RecyclerViewList2"
-            android:label="@string/title_activity_recycler_view_list2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".RecyclerViewList" />
+        <activity android:name=".SavedPartsActivity"></activity>
+        <activity android:name=".RecyclerViewActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

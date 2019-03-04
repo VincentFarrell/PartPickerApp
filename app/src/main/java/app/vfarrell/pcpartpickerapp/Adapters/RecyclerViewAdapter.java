@@ -15,14 +15,12 @@ import app.vfarrell.pcpartpickerapp.R;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     private List<CPU> cpusList;
-    private Context context;
 
 
 
 
-    public RecyclerViewAdapter(List<CPU> cpusList, Context context) {
+    public RecyclerViewAdapter(List<CPU> cpusList) {
         this.cpusList = cpusList;
-        this.context = context;
     }
 
     @Override

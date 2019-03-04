@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -39,7 +38,7 @@ public class ComponentPickerMenu extends AppCompatActivity {
 
                 Toast.makeText(ComponentPickerMenu.this, components[i], Toast.LENGTH_SHORT).show();
 
-                startActivity(new Intent(ComponentPickerMenu.this, RecyclerViewList2.class));
+                startActivity(new Intent(ComponentPickerMenu.this, RecyclerViewActivity.class));
             }
         });
 

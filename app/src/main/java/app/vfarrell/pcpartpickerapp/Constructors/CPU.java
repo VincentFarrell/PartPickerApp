@@ -22,6 +22,8 @@ public class CPU {
         this.cpuTDP = cpuTDP;
     }
 
+    public CPU() {}
+
     public String getCpuManufacturer() {
         return cpuManufacturer;
     }

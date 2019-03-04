@@ -5,10 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button btn;
+    private ImageButton launchPickerBtn;
+    private ImageButton launchListBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,12 +18,21 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        btn = (Button) findViewById(R.id.switchBtn);
+        launchPickerBtn = findViewById(R.id.launchPickerBtn);
 
-        btn.setOnClickListener(new View.OnClickListener() {
+        launchPickerBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, ComponentPickerMenu.class));
+            }
+        });
+
+
+        launchListBtn = findViewById(R.id.launchListBtn);
+        launchListBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, SavedPartsActivity.class));
             }
         });
     }
