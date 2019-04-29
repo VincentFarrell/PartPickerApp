@@ -24,4 +24,8 @@
     <string name="sign_out_error">Failed to sign out</string>
     <string name="user_deletion_error">Failed to delete user</string>
     <string name="title_activity_recycler_view_list2">RecyclerViewList2</string>
+
+    <string name="title_activity_splash_screen">SplashScreen</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>

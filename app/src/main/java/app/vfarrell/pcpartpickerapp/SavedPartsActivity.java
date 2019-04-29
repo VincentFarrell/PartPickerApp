@@ -21,16 +21,31 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.vfarrell.pcpartpickerapp.Adapters.GPUAdapter;
+import app.vfarrell.pcpartpickerapp.Adapters.MOBOAdapter;
+import app.vfarrell.pcpartpickerapp.Adapters.RAMAdapter;
 import app.vfarrell.pcpartpickerapp.Adapters.RecyclerTouchListener;
 import app.vfarrell.pcpartpickerapp.Adapters.CPUAdapter;
 import app.vfarrell.pcpartpickerapp.Constructors.CPU;
+import app.vfarrell.pcpartpickerapp.Constructors.GPU;
+import app.vfarrell.pcpartpickerapp.Constructors.MOBO;
+import app.vfarrell.pcpartpickerapp.Constructors.RAM;
 
 public class SavedPartsActivity extends AppCompatActivity {
 
     private List<CPU> cpusList = new ArrayList<>();
-    private RecyclerView mRecyclerView;
-    private CPUAdapter mAdapter;
+    private List<MOBO> mobosList = new ArrayList<>();
+    private List<RAM> ramList = new ArrayList<>();
+    private List<GPU> gpuList = new ArrayList<>();;
+    private CPUAdapter cpuAdapter;
+    private MOBOAdapter moboAdapter;
+    private RAMAdapter ramAdapter;
+    private GPUAdapter gpuAdapter;
     private CPU cpu;
+    private MOBO mobo;
+    private RAM ram;
+    private GPU gpu;
+    private RecyclerView mRecyclerView;
     private FirebaseDatabase firebaseDb;
     private DatabaseReference databaseRef;
     private TextView noSavedText;
@@ -78,13 +93,13 @@ public class SavedPartsActivity extends AppCompatActivity {
                 cpu = dataSnapshot.getValue(CPU.class);
                 cpusList.add(cpu);
 
-                mAdapter = new CPUAdapter(cpusList);
+                cpuAdapter = new CPUAdapter(cpusList);
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                 mRecyclerView.setLayoutManager(mLayoutManager);
                 mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-                mRecyclerView.setAdapter(mAdapter);
+                mRecyclerView.setAdapter(cpuAdapter);
 
-                mAdapter.notifyDataSetChanged();
+                cpuAdapter.notifyDataSetChanged();
 
                 if(!cpusList.isEmpty()) {
                     noSavedText.setVisibility(View.INVISIBLE);

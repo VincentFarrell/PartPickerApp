@@ -17,6 +17,10 @@ public class RAM {
         this.ramMemorySpeed = ramMemorySpeed;
     }
 
+    public RAM() {
+
+    }
+
     public String getRamManufacturer() {
         return ramManufacturer;
     }
