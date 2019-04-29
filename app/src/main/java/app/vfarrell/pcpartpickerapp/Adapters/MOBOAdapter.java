@@ -1,6 +1,5 @@
 package app.vfarrell.pcpartpickerapp.Adapters;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,17 +9,18 @@ import android.widget.TextView;
 import java.util.List;
 
 import app.vfarrell.pcpartpickerapp.Constructors.CPU;
+import app.vfarrell.pcpartpickerapp.Constructors.MOBO;
 import app.vfarrell.pcpartpickerapp.R;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+public class MOBOAdapter extends RecyclerView.Adapter<MOBOAdapter.MyViewHolder> {
 
-    private List<CPU> cpusList;
-
-
+    private List<MOBO> moboList;
 
 
-    public RecyclerViewAdapter(List<CPU> cpusList) {
-        this.cpusList = cpusList;
+
+
+    public MOBOAdapter(List<MOBO> moboList) {
+        this.moboList = moboList;
     }
 
     @Override
@@ -33,21 +33,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        CPU cpu = cpusList.get(position);
-        holder.manufacturer.setText(cpu.getCpuManufacturer());
-        holder.model.setText(cpu.getCpuModel());
-        holder.info1.setText(cpu.getCpuCores());
-        holder.info2.setText(cpu.getCpuMemory());
-        holder.info3.setText(cpu.getCpuClock());
-        holder.info4.setText(cpu.getCpuBoost());
-        holder.info5.setText(cpu.getCpuTDP());
-        holder.info6.setText(cpu.getCpuSocket());
+        MOBO mobo = moboList.get(position);
+        holder.manufacturer.setText(mobo.getMoboManufacturer());
+        holder.model.setText(mobo.getMoboModel());
+        holder.info1.setText(mobo.getMoboSocketType());
+        holder.info2.setText(mobo.getMoboChipset());
+        holder.info3.setText(mobo.getMoboFormFactor());
+        holder.info4.setText(mobo.getMoboMemoryType());
+        holder.info5.setText(mobo.getMoboMemorySlots());
+        holder.info6.setText(mobo.getMoboMemoryMax());
 
     }
 
     @Override
     public int getItemCount() {
-        return cpusList.size();
+        return moboList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

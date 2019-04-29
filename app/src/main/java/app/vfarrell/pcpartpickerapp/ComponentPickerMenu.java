@@ -17,6 +17,8 @@ public class ComponentPickerMenu extends AppCompatActivity {
 
     String[] components = {"CPUs", "Motherboards", "Memory", "Graphics Cards", "HHDs", "SSDs", "PSUs", "Cases"};
 
+    String choice = "";
+
     ListView listView;
 
     MenuListAdapter listAdapter;
@@ -38,7 +40,14 @@ public class ComponentPickerMenu extends AppCompatActivity {
 
                 Toast.makeText(ComponentPickerMenu.this, components[i], Toast.LENGTH_SHORT).show();
 
-                startActivity(new Intent(ComponentPickerMenu.this, RecyclerViewActivity.class));
+                choice = components[i];
+
+                Intent intent = new Intent(ComponentPickerMenu.this, RecyclerViewActivity.class);
+
+                intent.putExtra("choice", choice);
+
+                startActivity(intent);
+
             }
         });
 

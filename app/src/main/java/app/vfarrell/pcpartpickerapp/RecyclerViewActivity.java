@@ -23,17 +23,24 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import app.vfarrell.pcpartpickerapp.Adapters.MOBOAdapter;
 import app.vfarrell.pcpartpickerapp.Adapters.RecyclerTouchListener;
-import app.vfarrell.pcpartpickerapp.Adapters.RecyclerViewAdapter;
+import app.vfarrell.pcpartpickerapp.Adapters.CPUAdapter;
 import app.vfarrell.pcpartpickerapp.Constructors.CPU;
+import app.vfarrell.pcpartpickerapp.Constructors.MOBO;
 
 public class RecyclerViewActivity extends AppCompatActivity {
     private List<CPU> cpusList = new ArrayList<>();
+    private List<MOBO> mobosList = new ArrayList<>();
     private RecyclerView mRecyclerView;
-    private RecyclerViewAdapter mAdapter;
+    private CPUAdapter cpuAdapter;
+    private MOBOAdapter moboAdapter;
     private CPU cpu;
+    private MOBO mobo;
     private FirebaseDatabase firebaseDb;
     private DatabaseReference databaseRef;
+
+    String getChoice = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,32 +53,48 @@ public class RecyclerViewActivity extends AppCompatActivity {
         mRecyclerView = findViewById(R.id.recycler_view);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
 
-
-        loadFirebaseData();
-
+        Bundle extras = getIntent().getExtras();
 
 
+        getChoice = extras.getString("choice");
 
-        mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecyclerView, new RecyclerTouchListener.ClickListener() {
-            @Override
-            public void onClick(View view, int position) {
-                cpu = cpusList.get(position);
-                Toast.makeText(getApplicationContext(), cpu.getCpuModel() + " is selected!", Toast.LENGTH_SHORT).show();
-            }
+        if (getChoice.equals("CPUs"))
+        {
+            Log.i("CHOICE>>>>>>", getChoice);
+            loadCPUData();
+        }
+        else if (getChoice.equals("Motherboards"))
+        {
+            Log.i("CHOICE>>>>>>", getChoice);
+            loadMOBOData();
+        }
+        else
+        {
+            loadCPUData();
+        }
 
-            @Override
-            public void onLongClick(View view, int position) {
-                cpu = cpusList.get(position);
 
-                onClickAddItem(cpu);
-            }
-        }));
+
+//        mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), mRecyclerView, new RecyclerTouchListener.ClickListener() {
+//            @Override
+//            public void onClick(View view, int position) {
+//                cpu = cpusList.get(position);
+//                Toast.makeText(getApplicationContext(), cpu.getCpuModel() + " is selected!", Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onLongClick(View view, int position) {
+//                cpu = cpusList.get(position);
+//
+//                onClickAddItem(cpu);
+//            }
+//        }));
 
 
 
     }
 
-    private List<CPU> loadFirebaseData() {
+    private List<CPU> loadCPUData() {
         databaseRef.child("cpu").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -79,13 +102,13 @@ public class RecyclerViewActivity extends AppCompatActivity {
                 cpu = dataSnapshot.getValue(CPU.class);
                 cpusList.add(cpu);
 
-                mAdapter = new RecyclerViewAdapter(cpusList);
+                cpuAdapter = new CPUAdapter(cpusList);
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                 mRecyclerView.setLayoutManager(mLayoutManager);
                 mRecyclerView.setItemAnimator(new DefaultItemAnimator());
-                mRecyclerView.setAdapter(mAdapter);
+                mRecyclerView.setAdapter(cpuAdapter);
 
-                mAdapter.notifyDataSetChanged();
+                cpuAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -110,6 +133,66 @@ public class RecyclerViewActivity extends AppCompatActivity {
         });
         return cpusList;
     }
+
+    private List<MOBO> loadMOBOData() {
+        databaseRef.child("motherboards").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) { mobo = dataSnapshot.getValue(MOBO.class);
+                mobosList.add(mobo);
+
+                moboAdapter = new MOBOAdapter(mobosList);
+                RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+                mRecyclerView.setLayoutManager(mLayoutManager);
+                mRecyclerView.setItemAnimator(new DefaultItemAnimator());
+                mRecyclerView.setAdapter(moboAdapter);
+
+                moboAdapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        return mobosList;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public void onClickAddItem(final CPU cpu) {
@@ -151,6 +234,6 @@ public class RecyclerViewActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Part Removed from List", Toast.LENGTH_SHORT).show();
 
-        mAdapter.notifyDataSetChanged();
+        cpuAdapter.notifyDataSetChanged();
     }
 }

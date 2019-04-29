@@ -23,6 +23,9 @@ public class MOBO {
         this.moboMemoryMax = moboMemoryMax;
     }
 
+    public MOBO() {
+
+    }
     public String getMoboManufacturer() {
         return moboManufacturer;
     }

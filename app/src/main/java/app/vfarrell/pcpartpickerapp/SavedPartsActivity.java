@@ -22,14 +22,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import app.vfarrell.pcpartpickerapp.Adapters.RecyclerTouchListener;
-import app.vfarrell.pcpartpickerapp.Adapters.RecyclerViewAdapter;
+import app.vfarrell.pcpartpickerapp.Adapters.CPUAdapter;
 import app.vfarrell.pcpartpickerapp.Constructors.CPU;
 
 public class SavedPartsActivity extends AppCompatActivity {
 
     private List<CPU> cpusList = new ArrayList<>();
     private RecyclerView mRecyclerView;
-    private RecyclerViewAdapter mAdapter;
+    private CPUAdapter mAdapter;
     private CPU cpu;
     private FirebaseDatabase firebaseDb;
     private DatabaseReference databaseRef;
@@ -78,7 +78,7 @@ public class SavedPartsActivity extends AppCompatActivity {
                 cpu = dataSnapshot.getValue(CPU.class);
                 cpusList.add(cpu);
 
-                mAdapter = new RecyclerViewAdapter(cpusList);
+                mAdapter = new CPUAdapter(cpusList);
                 RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
                 mRecyclerView.setLayoutManager(mLayoutManager);
                 mRecyclerView.setItemAnimator(new DefaultItemAnimator());
